@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ed">
+  <meta name="description" content="Ejercicio interactivo de área, costos, ingresos y punto de equilibrio para fabricar camas para perros.">
+  <title>Diseño y optimización | Camas para perros</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio"><span class="brand-mark">huella</span><span>Taller <b>Buen Descanso</b></span></a>
+    <nav aria-label="Navegación principal"><a href="#area">Área</a><a href="#costos">Costos</a><a href="#equilibrio">Equilibrio</a></nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero section-wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> MATEMÁTICAS APLICADAS · PRODUCCIÓN</p>
+        <h1>Diseño y optimización de costos en la <em>fabricación de camas para perros.</em></h1>
+        <p class="lead">Un modelo práctico para calcular materiales, entender los costos y descubrir cuántas camas debemos vender para alcanzar el equilibrio.</p>
+        <a class="button primary" href="#area">Explorar el ejercicio <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="Ilustración de una cama rectangular para perro" role="img">
+        <div class="sun"></div><span class="art-label">HECHA PARA SOÑAR</span>
+        <svg viewBox="0 0 560 360" aria-hidden="true" class="bed-svg">
+          <ellipse cx="283" cy="303" rx="210" ry="27" fill="#d8c5aa" opacity=".45"/>
+          <path d="M101 167 292 99l173 65-190 77z" fill="#d99067"/>
+          <path d="m101 167 174 74v54l-174-74z" fill="#bb704e"/>
+          <path d="m275 241 190-77v52l-190 79z" fill="#9d573f"/>
+          <path d="m133 175 159-57 139 53-160 65z" fill="#f4d9ae"/>
+          <path d="m153 176 139-49 118 45-139 53z" fill="#fff0d5"/>
+          <path d="M174 175q18-30 52-20l31 10q18-20 43-11l29 10q23-14 47-3l30 11-139 50-93-39z" fill="#f8ecdc"/>
+          <path d="M192 149q13-12 31-6t23 21q2 18-17 21t-33-8-4-28" fill="#c47a56"/>
+          <path d="M211 153q6-5 13-1m-17 5 1 1m13 2 1 1" stroke="#573b34" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M206 173q8 7 17 1" stroke="#573b34" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="m102 160 174 74 190-77" fill="none" stroke="#f2b184" stroke-width="7" stroke-linecap="round"/>
+          <path d="m118 224 150 64m127-96 43-18" stroke="#e9aa82" stroke-width="4" stroke-linecap="round" opacity=".65"/>
+        </svg>
+        <span class="dimension dim-length">80 cm</span><span class="dimension dim-width">60 cm</span><span class="dimension dim-height">15 cm</span>
+        <span class="art-caption">Un espacio cómodo, bien calculado.</span>
+      </div>
+    </section>
+
+    <section class="intro section-wrap">
+      <div><p class="eyebrow">EL RETO</p><h2>Comodidad que también <em>tiene sentido.</em></h2></div>
+      <p>Un pequeño taller fabrica camas rectangulares para perros. Para planear cada unidad, necesita estimar la tela que cubre la base y los laterales; luego, comparar sus costos de producción con los ingresos por ventas. En este ejercicio partimos de una cama de <b>80 × 60 cm</b>, con laterales de <b>15 cm</b>.</p>
+    </section>
+
+    <section class="section-wrap section-block" id="area">
+      <div class="section-heading"><div><p class="eyebrow">01 · MATERIALES</p><h2>¿Cuánta superficie necesitamos?</h2></div><p>Sumamos la base y las cuatro caras laterales. Las dimensiones se pueden ajustar para explorar otros diseños.</p></div>
+      <div class="area-grid">
+        <article class="card calculator-card">
+          <h3>Calculadora de área</h3><p class="muted">Ingresa las dimensiones en centímetros.</p>
+          <div class="input-grid three">
+            <label>Largo <span>(L)</span><div class="input-unit"><input id="length" type="number" min="0.1" step="0.1" value="80" inputmode="decimal"><b>cm</b></div></label>
+            <label>Ancho <span>(W)</span><div class="input-unit"><input id="width" type="number" min="0.1" step="0.1" value="60" inputmode="decimal"><b>cm</b></div></label>
+            <label>Laterales <span>(H)</span><div class="input-unit"><input id="height" type="number" min="0.1" step="0.1" value="15" inputmode="decimal"><b>cm</b></div></label>
+          </div>
+          <p class="formula">A = (L × W) + (2 × L × H) + (2 × W × H)</p>
+          <div class="substitution" id="area-steps" aria-live="polite"></div>
+          <div class="result-pair"><div><span>Área total</span><strong id="area-cm">—</strong><small>centímetros cuadrados</small></div><div><span>Equivalencia</span><strong id="area-m">—</strong><small>metros cuadrados</small></div></div>
+          <p class="validation" id="area-error" role="alert"></p>
+        </article>
+        <aside class="card note-card"><span class="note-icon">✳</span><h3>¿Qué estamos midiendo?</h3><p>La base aporta <b>L × W</b>. Los dos laterales largos aportan <b>2 × L × H</b> y los dos cortos, <b>2 × W × H</b>.</p><div class="note-example"><span>Con las dimensiones iniciales</span><b>4.900 cm² <small>· 0,49 m²</small></b><small>80 × 60 + 2 × 80 × 15 + 2 × 60 × 15</small></div><p class="tiny">El cálculo considera la superficie exterior plana; no incluye márgenes de costura ni desperdicio de material.</p></aside>
+      </div>
+    </section>
+
+    <section class="cost-section" id="costos"><div class="section-wrap section-block">
+      <div class="section-heading"><div><p class="eyebrow">02 · MODELO DE PRODUCCIÓN</p><h2>De los costos a la utilidad</h2></div><p>Los costos fijos se mantienen aunque no fabriquemos unidades. Los variables cambian con cada cama producida.</p></div>
+      <div class="cost-layout">
+        <article class="card cost-input-card"><h3>Define tus valores</h3><p class="muted">Todos los montos se expresan en pesos colombianos.</p>
+          <div class="input-grid two">
+            <label>Costos fijos<input id="fixed-cost" type="number" min="0" step="1000" value="150000" inputmode="numeric"></label>
+            <label>Variable inicial / cama<input id="variable-initial" type="number" min="0" step="1000" value="95000" inputmode="numeric"></label>
+            <label>Variable optimizado / cama<input id="variable-optimized" type="number" min="0" step="1000" value="85000" inputmode="numeric"></label>
+            <label>Precio de venta / cama<input id="sale-price" type="number" min="0" step="1000" value="160000" inputmode="numeric"></label>
+            <label class="quantity-label">Cantidad de camas<input id="quantity" type="number" min="0" step="1" value="10" inputmode="numeric"></label>
+          </div><p class="validation" id="cost-error" role="alert"></p>
+        </article>
+        <article class="card results-card"><div class="result-header"><div><p class="eyebrow">RESUMEN PARA TU PRODUCCIÓN</p><h3 id="summary-quantity">10 camas</h3></div><span class="live-pill"><i></i> En tiempo real</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Concepto</th><th>Escenario inicial</th><th>Optimizado</th></tr></thead><tbody>
+            <tr><th>Costos fijos</th><td id="table-fixed-initial"></td><td id="table-fixed-opt"></td></tr>
+            <tr><th>Costos variables</th><td id="table-var-initial"></td><td id="table-var-opt"></td></tr>
+            <tr class="total-row"><th>Costos totales</th><td id="total-initial"></td><td id="total-optimized"></td></tr>
+            <tr><th>Ingresos</th><td id="income-initial"></td><td id="income-opt"></td></tr>
+            <tr class="profit-row"><th>Utilidad</th><td id="profit-initial"></td><td id="profit-opt"></td></tr>
+          </tbody></table></div>
+          <div class="savings"><span class="savings-icon">↓</span><div><b id="savings-total">—</b><span id="savings-copy">de ahorro en este lote</span></div><small id="savings-unit">— por cama</small></div>
+        </article>
+      </div>
+      <div class="equations"><div><span class="eq-tag">COSTO INICIAL</span><p>C<sub>i</sub>(x) = <b>costos fijos + variable inicial × x</b></p><small>Con los valores de partida: C<sub>i</sub>(x) = 150.000 + 95.000x</small></div><div><span class="eq-tag optimized">COSTO OPTIMIZADO</span><p>C<sub>o</sub>(x) = <b>costos fijos + variable optimizado × x</b></p><small>Con los valores de partida: C<sub>o</sub>(x) = 150.000 + 85.000x</small></div><div><span class="eq-tag income">INGRESOS Y UTILIDAD</span><p>I(x) = <b>precio × x</b></p><small>Inicialmente: I(x) = 160.000x · U<sub>o</sub>(x) = 75.000x − 150.000</small></div></div>
+    </div></section>
+
+    <section class="section-wrap section-block" id="equilibrio"><div class="section-heading"><div><p class="eyebrow">03 · DECISIÓN</p><h2>Encuentra el punto de equilibrio</h2></div><p>Es la cantidad de ventas en la que los ingresos igualan los costos optimizados. Desde ahí, cada unidad adicional genera utilidad (si el margen es positivo).</p></div>
+      <div class="break-even-grid"><article class="card break-even-card"><div class="break-even-equation"><span>INGRESOS = COSTOS OPTIMIZADOS</span><b id="be-equation">160.000x = 150.000 + 85.000x</b><small id="be-work">75.000x = 150.000</small></div><div class="be-result"><span>Punto de equilibrio</span><strong id="be-units">2 <small>camas</small></strong><p id="be-detail">A partir de 2 camas se cubren los costos.</p></div></article>
+      <aside class="card insight-card"><span class="note-icon">◎</span><h3>¿Cómo se obtiene?</h3><p>Igualamos el precio de venta por unidad a los costos fijos más los costos variables:</p><p class="formula">precio × x = costos fijos + variable optimizado × x</p><p>Despejamos <b>x</b>. Como las camas se venden en unidades enteras, mostramos la cantidad mínima entera que cubre los costos. Si el precio no supera el costo variable, no se alcanza el equilibrio con ventas.</p></aside></div>
+      <div class="closing"><div><span>Una mejora por unidad puede cambiar todo el lote.</span><h2>Mejores decisiones, <em>mejores descansos.</em></h2></div><a href="#inicio" class="back-top">Volver al inicio ↑</a></div>
+    </section>
+  </main>
+  <footer><div class="section-wrap"><span>✳ Taller Buen Descanso</span><span>Ejercicio académico · Modelo matemático editable</span></div></footer>
+</body>
+</html>
